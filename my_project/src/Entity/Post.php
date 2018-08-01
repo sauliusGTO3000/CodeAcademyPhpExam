@@ -22,7 +22,7 @@ class Post
     private $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", unique=True)
      */
     private $content;
 

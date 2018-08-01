@@ -28,7 +28,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=True)
      * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="author")
      */
     private $username;

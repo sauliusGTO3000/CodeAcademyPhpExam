@@ -19,6 +19,10 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
+
+
+
+
     public function findPosted($maxResults=null){
 
         $query =  $this->createQueryBuilder('p')
@@ -35,6 +39,14 @@ class PostRepository extends ServiceEntityRepository
     }
 
 
+    public function findByAuthor($author){
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.author=:author')
+            ->setParameter('author', $author)
+            ->orderBy('p.datePublished', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 
 
 //    /**

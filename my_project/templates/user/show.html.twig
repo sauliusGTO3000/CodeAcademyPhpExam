@@ -20,8 +20,8 @@
                 <td>{{ user.password }}</td>
             </tr>
             <tr>
-                <th>Signature</th>
-                <td>{{ user.signature }}</td>
+                <th>Username</th>
+                <td>{{ user.username }}</td>
             </tr>
         </tbody>
     </table>
@@ -31,4 +31,9 @@
     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
 
     {{ include('user/_delete_form.html.twig') }}
+
+    <h1> {{ user.username }} parašė:</h1>
+    {% for post in postRepository.findbyAuthor(user.id ) %}
+            <a href="/post/{{ post.id }}">{{ post.title }}</a>
+        {% endfor %}</h3>
 {% endblock %}
