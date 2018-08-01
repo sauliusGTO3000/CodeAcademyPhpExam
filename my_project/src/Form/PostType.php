@@ -15,7 +15,6 @@ class PostType extends AbstractType
             ->add('title')
             ->add('content')
             ->add('datePublished')
-            ->add('author')
         ;
     }
 

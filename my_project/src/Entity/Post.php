@@ -32,7 +32,8 @@ class Post
     private $datePublished;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="username")
+     *
      */
     private $author;
 
@@ -77,14 +78,14 @@ class Post
         return $this;
     }
 
-    public function getAuthor(): ?string
+    public function getAuthor(): ?User
     {
         return $this->author;
     }
 
-    public function setAuthor(string $author): self
+    public function setAuthor(User $user): self
     {
-        $this->author = $author;
+        $this->author = $user;
 
         return $this;
     }

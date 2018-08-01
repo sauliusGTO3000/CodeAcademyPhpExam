@@ -29,12 +29,14 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="author")
      */
     private $username;
 
 
     /**
      * @ORM\Column(name="is_active", type="boolean")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="author")
      */
     private $isActive=true;
 
@@ -49,7 +51,7 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        return $this->roles;
+        return array('ROLE_ADMIN');
     }
 
     /**
