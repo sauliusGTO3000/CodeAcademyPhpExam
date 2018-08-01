@@ -29,7 +29,29 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $signature;
+    private $username;
+
+
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
+    /**
+     * @return mixed
+     */
+    public function getisActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param mixed $isActive
+     */
+    public function setIsActive($isActive): void
+    {
+        $this->isActive = $isActive;
+    }
 
     public function getId()
     {
@@ -60,15 +82,39 @@ class User
         return $this;
     }
 
-    public function getSignature(): ?string
+    public function getUsername(): ?string
     {
-        return $this->signature;
+        return $this->username;
     }
 
-    public function setSignature(string $signature): self
+    public function setUsername(string $username): self
     {
-        $this->signature = $signature;
+        $this->username = $username;
 
         return $this;
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized, array('allowed_classes' => false));
     }
 }
