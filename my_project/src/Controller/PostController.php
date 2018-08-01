@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
 
 
 /**
@@ -34,13 +36,24 @@ class PostController extends Controller
     }
 
     /**
+     * @Route("/autoriausPostai", name="autoriausPostai", methods="GET")
+     *
+     */
+    public function autoriausPostai(PostRepository $postRepository, UserInterface $user): Response
+    {
+        
+        return $this->render('post/index.html.twig', ['posts'=>$postRepository->findByAuthor($user)]);
+    }
+
+
+    /**
      * @Route("/new", name="post_new", methods="GET|POST")
      */
     public function new(Request $request, UserInterface $user): Response
     {
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
-        $post->setAuthor($user);
+        $post->setAuthor($user.id);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -98,6 +111,8 @@ class PostController extends Controller
 
         return $this->redirectToRoute('post_index');
     }
+
+
 
 
 
