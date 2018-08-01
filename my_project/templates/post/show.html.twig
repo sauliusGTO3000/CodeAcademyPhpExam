@@ -32,8 +32,9 @@
     </table>
 
     <a href="{{ path('post_index') }}">back to list</a>
-    {% if app.user %}
+    {% if app.user is not null and app.user.id == post.author.id %}
         <a href="{{ path('post_edit', {'id': post.id}) }}">edit</a>
+        {{ include('post/_delete_form.html.twig') }}
     {% endif %}
-    {{ include('post/_delete_form.html.twig') }}
+
 {% endblock %}

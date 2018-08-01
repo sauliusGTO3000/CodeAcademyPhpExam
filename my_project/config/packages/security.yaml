@@ -11,7 +11,7 @@ security:
             in_memory:
                 memory:
                     users:
-                        admin@admin.com:
+                        adminas@admin.com:
                             password: $2y$13$GokmxeAM1kEoQDumZG8H/uToGhhybsjn/FX.c7JuWtbvC6L77OpfO
                             roles: ['ROLE_ADMIN']
             in_database:

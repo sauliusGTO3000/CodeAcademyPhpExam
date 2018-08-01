@@ -17,12 +17,12 @@ class Post
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", unique=True, length=55)
      */
     private $title;
 
     /**
-     * @ORM\Column(type="text", unique=True)
+     * @ORM\Column(type="text")
      */
     private $content;
 

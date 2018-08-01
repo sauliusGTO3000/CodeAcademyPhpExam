@@ -84,6 +84,7 @@ class UserController extends Controller
      */
     public function delete(Request $request, User $user): Response
     {
+
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($user);
