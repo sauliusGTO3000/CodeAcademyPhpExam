@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+
 /**
  * @Route("/post")
  */
@@ -23,6 +24,13 @@ class PostController extends Controller
     public function index(PostRepository $postRepository): Response
     {
         return $this->render('post/index.html.twig', ['posts' => $postRepository->findPosted(5)]);
+    }
+
+    /**
+     * @Route("/postsforadmin", name="postsforadmin", methods="GET")
+     */
+    public function posts(){
+        return $this->render('post/indexAdmin.html.twig');
     }
 
     /**
@@ -90,6 +98,8 @@ class PostController extends Controller
 
         return $this->redirectToRoute('post_index');
     }
+
+
 
 
 

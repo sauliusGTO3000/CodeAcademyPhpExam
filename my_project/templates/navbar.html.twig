@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block navbar %}
+    <h3>Navbar:</h3>
+    <ul>
+        <li><a href="{{ path('index') }}">index</a></li>
+        {% if app.user %}
+            <li><a href="/logout"> logout</a></li>
+            {% else %}
+                <li><a href="login"> login</a></li>
+        {% endif %}
+    {% if app.user %}
+        <li><a href="user">autoriai</a></li>
+    {% endif %}
+    {% if app.user %}
+        <li><a href="{{ path('postsforadmin') }}">postai(admin view)</a></li>
+    {% endif %}
+
+    </ul>
+{% endblock %}

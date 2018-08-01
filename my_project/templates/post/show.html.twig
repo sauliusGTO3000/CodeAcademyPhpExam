@@ -26,6 +26,7 @@
             <tr>
                 <th>Author</th>
                 <td>{{ post.author.username }}</td>
+                <td><a href="{{ path('user_show', {'id': post.author.id}) }}">linkas i autoriaus puslapi</a></td>
             </tr>
         </tbody>
     </table>
