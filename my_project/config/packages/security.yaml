@@ -13,7 +13,7 @@ security:
                     users:
                         admin@admin.com:
                             password: $2y$13$GokmxeAM1kEoQDumZG8H/uToGhhybsjn/FX.c7JuWtbvC6L77OpfO
-                            roles: ['ROLE_AUTHOR']
+                            roles: ['ROLE_ADMIN']
             in_database:
                 entity: { class: App\Entity\User, property: username }
     firewalls:
@@ -41,5 +41,7 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path: ^/post/new, roles: ROLE_ADMIN }
+         - { path: ^/post/edit, roles: ROLE_ADMIN }
+         - { path: ^/user, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
