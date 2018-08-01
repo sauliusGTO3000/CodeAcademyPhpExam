@@ -19,6 +19,24 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
+    public function findPosted($maxResults=null){
+
+        $query =  $this->createQueryBuilder('p')
+            ->orderBy('p.datePublished', 'DESC');
+
+        if($maxResults != null){
+            $query = $query->setMaxResults($maxResults);
+        };
+        $query = $query
+            ->getQuery()
+            ->getResult();
+
+        return $query;
+    }
+
+
+
+
 //    /**
 //     * @return Post[] Returns an array of Post objects
 //     */
